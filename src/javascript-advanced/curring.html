@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    const applyDiscount = (discount) => (price) => price - (price * discount / 100);
+    const tenPercentOff = applyDiscount(10);
+    const twentyPercentOff = applyDiscount(20);
+
+    console.log(tenPercentOff(100)); // 90
+    console.log(twentyPercentOff(100)); // 80
+
+    const applyTax = (taxRate) => (price) => price + (price * taxRate / 100);
+    const applyTenPercentTax = applyTax(10);
+
+    console.log(applyTenPercentTax(100)); // 110
+    console.log(applyTenPercentTax(twentyPercentOff(100))); // 88
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

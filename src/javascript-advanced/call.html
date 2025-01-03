@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var a = Object.prototype.toString;
+    // console.log(a.call(2));
+    // console.log(a.call(true));
+    // console.log(a.call('str'));
+    // console.log(a.call([]));
+    // console.log(a.call(function () { }));
+    // console.log(a.call({}));
+    // console.log(a.call(undefined));
+    // console.log(a.call(null));
+
+
+    // call的实现
+    Function.prototype.mu_call = function (context, ...args) {
+      //obj不存在指向window
+      if (!context || context === null) {
+        context = window;
+      }
+      // 创造唯一的key值  作为我们构造的context内部方法名
+      let fn = Symbol();
+
+      //this指向调用call的函数
+      context[fn] = this;
+
+      // 执行函数并返回结果 相当于把自身作为传入的context的方法进行调用了
+      return context[fn](...args);
+    };
+
+    // 测试
+    var value = 2;
+    var obj1 = {
+      value: 1,
+    };
+    function bar(name, age) {
+      var myObj = {
+        name: name,
+        age: age,
+        value: this.value,
+      };
+      console.log(this.value, myObj);
+    }
+    bar.mu_call(null); //打印 2 {name: undefined, age: undefined, value: 2}
+    bar.mu_call(obj1, 'tom', '110'); // 打印 1 {name: "tom", age: "110", value: 1}
+
+  </script>
+</body>
+
+</html>
