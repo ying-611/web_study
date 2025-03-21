@@ -1,0 +1,69 @@
+/* styles.css */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.animated-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.animated-button:hover {
+  transition: transform 0.3s ease;
+  /* 定义过渡效果 */
+  /* transform: translate(20px, 20px) scale(1.5); */
+  /* 平移 + 缩放 */
+  /* transform: rotate(45deg) scale(1.5); */
+
+  transform: translate(20px, 20px) rotate(45deg) scale(1.5);
+}
+
+
+.animated-box {
+  width: 100px;
+  height: 100px;
+  background-color: #007bff;
+  border-radius: 10px;
+  /* animation: rotateAndScale 2s infinite; */
+  /* 定义动画 */
+  animation: bounce 1s infinite ease-in-out;
+}
+
+/* 定义关键帧动画 */
+@keyframes rotateAndScale {
+  0% {
+    transform: rotate(0deg) scale(1);
+    /* 初始状态 */
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.5);
+    /* 旋转 180 度并放大到 1.5 倍 */
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+    /* 最终状态 */
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+}
